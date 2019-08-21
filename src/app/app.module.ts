@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { OnsenModule } from 'ngx-onsenui';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,6 @@ import { OnsenModule } from 'ngx-onsenui';
   imports: [
     HttpClientModule,
     BrowserModule,
-    OnsenModule,
     AppRoutingModule
   ],
   providers: [],
