@@ -8,12 +8,16 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AppComponent {
   title = 'chi-tieu-app';
-  listNguoiQL;
-  listLoaiBienDong;
-  listBienDong;
-  selectedNguoiQL;
-  selectedLoaiBienDong;
-  selectedBienDong;
+  myDate = new Date();
+  listNguoiQL = null;
+  listLoaiBienDong = null;
+  listBienDong = null;
+  selectedNguoiQL = null;
+  selectedLoaiBienDong = null;
+  selectedBienDong = null;
+  selectedNgay = null;
+  selectedTien = null;
+  selectedNoiDung = null;
   constructor(private httpClient: HttpClient) { }
   ngOnInit() {
 
@@ -27,10 +31,29 @@ export class AppComponent {
       //console.log(this.listLoaiBienDong);
       this.selectedLoaiBienDong = this.listLoaiBienDong[0].loaiBD_ID;
     });
-    this.httpClient.get('https://chi-tieu-api.herokuapp.com/api/biendong/' + this.selectedLoaiBienDong).subscribe((data) => {
+    this.httpClient.get('https://chi-tieu-api.herokuapp.com/api/biendong').subscribe((data) => {
       this.listBienDong = data;
       //console.log(this.listBienDong);
       this.selectedBienDong = this.listBienDong[0].bienDong_ID;
     });
+  }
+  ChonNgay(){
+    console.log(this.selectedNgay);
+  }
+  taoBienDong(){
+    console.log(this.selectedNguoiQL);
+    console.log(this.selectedBienDong);
+    console.log(this.selectedNgay);
+    console.log(this.selectedTien);
+    console.log(this.selectedNoiDung);
+    // this.httpClient.post('https://chi-tieu-api.herokuapp.com/api/CT_BienDong', JSON.stringify('"NguoiQL_ID"="'+this.selectedNguoiQL+'",'+
+    //                                                                                           '"BienDong_ID"="'+this.selectedBienDong+'",'+
+    //                                                                                           '"Ngay"="'+this.selectedNgay+'",'+
+    //                                                                                           '"Tien"="'+this.selectedTien+'",'+
+    //                                                                                           '"NoiDung"="'+this.selectedNoiDung+'",'+
+    //                                                                                           '"GhiChu"="'+''+'",')).pipe(
+    //   data => {
+    //     return data;
+    // });
   }
 }

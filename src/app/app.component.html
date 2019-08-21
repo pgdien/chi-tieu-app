@@ -1,114 +1,67 @@
-<div class='container-fluid'>
-  <div class='row'>
-    <!--<div class='col-sm-3'>
-      <app-nav-menu></app-nav-menu>
-    </div>-->
-    <ul class="nav nav-pills">
-    <li class="active col-4"><a data-toggle="pill" href="#home">Tạo biến động</a></li>
-    <li class="col-4"><a data-toggle="pill" href="#tknhap">TK xuất</a></li>
-    <li class="col-4"><a data-toggle="pill" href="#tkxuat">TK nhập</a></li>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tạo BD</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">TK nhập</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">TK xuất</a>
+    </li>
   </ul>
-  
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <div class='col-sm-12 body-content'>
-      <!--<router-outlet></router-outlet>-->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <form>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Người nhập</label>
-          <select
-            class="form-control"
-            name="pageSize"
-            ngModel="selectedNguoiQL"
-          >
-            <option *ngFor="let NguoiQL of listNguoiQL" ngValue=NguoiQL.nguoiQL_ID>{{NguoiQL.ten_NguoiQL}}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect2">Loại biến động</label>
-          <select
-            class="form-control"
-            name="pageSize"
-            ngModel="selectedLoaiBienDong"
-            change="selectLoaiBD()"
-          >
-            <option *ngFor="let LoaiBienDong of listLoaiBienDong" ngValue=LoaiBienDong.loaiBD_ID>{{LoaiBienDong.ten_LoaiBD}}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect3">Biến động</label>
-          <select
-            class="form-control"
-            name="pageSize"
-            ngModel="selectedBienDong"
-          >
-            <option *ngFor="let BienDong of listBienDong" ngValue=BienDong.bienDong_ID>{{BienDong.ten_BD}}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Ngày</label>
-          <input type='date' class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Tiền</label>
-          <input type='number' class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Nội dung</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-      </form>
-    </div>
-    </div>
-
-    <div id="tknhap" class="tab-pane fade">
-      <table class="table table-bordered col-12">
-        <thead>
-          <tr>
-            <th>Người nhập</th>
-            <th>Ngày</th>
-            <th>Biến động</th>
-            <th>Tiền</th>
-            <th>Nội dung</th>
-            <th>Ghi chú</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Phạm Gia Điền</td>
-            <td>15/08/2019</td>
-            <td>Trả nợ</td>
-            <td>-5000000</td>
-            <td>Đi ỉa</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+          <div class="form-group col-md-4">
+            <label for="inputState">Người nhập</label>
+            <select
+              id="inputState" 
+              class="form-control"
+              name="pageSize"
+              [(ngModel)]="selectedNguoiQL"
+            >
+              <option *ngFor="let NguoiQL of listNguoiQL" [(ngValue)]="NguoiQL.nguoiQL_ID">{{NguoiQL.ten_NguoiQL}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">Loại biến động</label>
+            <select
+              id="inputState" 
+              class="form-control"
+              name="pageSize"
+              [(ngModel)]="selectedLoaiBienDong"
+            >
+              <option *ngFor="let LoaiBienDong of listLoaiBienDong" [(ngValue)]="LoaiBienDong.loaiBD_ID">{{LoaiBienDong.ten_LoaiBD}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">Loại biến động</label>
+            <select
+              id="inputState" 
+              class="form-control"
+              name="pageSize"
+              [(ngModel)]="selectedBienDong"
+            >
+              <option *ngFor="let BienDong of listBienDong" [(ngValue)]="BienDong.bienDong_ID">{{BienDong.ten_BD}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputDate">Ngày</label>
+            <input type="date" class="form-control" id="inputDate" [(ngModel)]="selectedNgay" (change)="ChonNgay()" required>
+            <p>{{selectedNgay}}</p> 
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputMoney">Tiền</label>
+            <input type="number" class="form-control" id="inputMoney" [(ngModel)]="selectedTien">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="exampleFormControlTextarea1">Nội dung</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="selectedNoiDung"></textarea>
+          </div>
+          <button type="button" class="btn btn-outline-success btn-block" (click)="taoBienDong()">Tạo biến động</button>
+        </form>
     </div>
 
-    <div id="tkxuat" class="tab-pane fade">
-      <table class="table table-bordered col-12">
-        <thead>
-          <tr>
-            <th>Người nhập</th>
-            <th>Ngày</th>
-            <th>Biến động</th>
-            <th>Tiền</th>
-            <th>Nội dung</th>
-            <th>Ghi chú</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Phạm Gia Điền</td>
-            <td>15/08/2019</td>
-            <td>Trả nợ</td>
-            <td>-5000000</td>
-            <td>Đi ỉa</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
   </div>
-</div>
