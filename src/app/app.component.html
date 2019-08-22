@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+<ul class="nav nav-pills mb-3" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tạo BD</a>
     </li>
@@ -17,7 +17,7 @@
             <select
               id="inputState" 
               class="form-control"
-              name="pageSize"
+              name="selectedNguoiQL"
               [(ngModel)]="selectedNguoiQL"
             >
               <option *ngFor="let NguoiQL of listNguoiQL" [(ngValue)]="NguoiQL.nguoiQL_ID">{{NguoiQL.ten_NguoiQL}}</option>
@@ -28,8 +28,9 @@
             <select
               id="inputState" 
               class="form-control"
-              name="pageSize"
+              name="selectedLoaiBienDong"
               [(ngModel)]="selectedLoaiBienDong"
+              (change)="selectLoaiBD()"
             >
               <option *ngFor="let LoaiBienDong of listLoaiBienDong" [(ngValue)]="LoaiBienDong.loaiBD_ID">{{LoaiBienDong.ten_LoaiBD}}</option>
             </select>
@@ -39,24 +40,23 @@
             <select
               id="inputState" 
               class="form-control"
-              name="pageSize"
+              name="selectedBienDong"
               [(ngModel)]="selectedBienDong"
             >
-              <option *ngFor="let BienDong of listBienDong" [(ngValue)]="BienDong.bienDong_ID">{{BienDong.ten_BD}}</option>
+              <option *ngFor="let BienDong of listBienDong2" [(ngValue)]="BienDong.bienDong_ID">{{BienDong.ten_BD}}</option>
             </select>
           </div>
           <div class="form-group col-md-4">
             <label for="inputDate">Ngày</label>
-            <input type="date" class="form-control" id="inputDate" [(ngModel)]="selectedNgay" (change)="ChonNgay()" required>
-            <p>{{selectedNgay}}</p> 
+            <input type="date" class="form-control" id="inputDate" [ngClass]="{'is-invalid': selectedNgay==null,'is-valid': selectedNgay!=null}" [(ngModel)]="selectedNgay" name="selectedNgay">
           </div>
           <div class="form-group col-md-4">
             <label for="inputMoney">Tiền</label>
-            <input type="number" class="form-control" id="inputMoney" [(ngModel)]="selectedTien">
+            <input type="number" class="form-control" id="inputMoney" [ngClass]="{'is-invalid': selectedTien==null,'is-valid': selectedTien!=null}" [(ngModel)]="selectedTien" name="selectedTien">
           </div>
           <div class="form-group col-md-4">
             <label for="exampleFormControlTextarea1">Nội dung</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="selectedNoiDung"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [ngClass]="{'is-invalid': selectedNoiDung==null,'is-valid': selectedNoiDung!=null}" [(ngModel)]="selectedNoiDung" name="selectedNoiDung"></textarea>
           </div>
           <button type="button" class="btn btn-outline-success btn-block" (click)="taoBienDong()">Tạo biến động</button>
         </form>
