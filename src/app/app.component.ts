@@ -9,8 +9,8 @@ import {HttpClient} from '@angular/common/http';
 export class AppComponent {
   title = 'chi-tieu-app';
   myDate = new Date();
-  // host='https://chi-tieu-api.herokuapp.com';
-  host='http://localhost:61994';
+  host='https://chi-tieu-api.herokuapp.com';
+  // host='http://localhost:61994';
   listNguoiQL = null;
   listLoaiBienDong = null;
   listBienDong = null;
